@@ -1,31 +1,25 @@
-#!/bin/python 
+#!/bin/python3 
 
-import request
+import requests
 
 def fetch_markets():
     """ f that fetches market live-data """
 
-    url = "https://api-election.kalshi.com/markets"
-    r = request.get(url)
+    url = "https://api.elections.kalshi.com/trade-api/v2/markets?limit=100"
+    r = requests.get(url)
     data = r.json()
-     
-    there was something else here
-    and here? 
+    return data
 
-def print_markets():
-    """ bla bla bla good documentation"""
+def print_markets(data):
+    """print selected markets """
 
-for i in enumerate(data):
-    then something here that would take out the key which was 
-    and here there were another thing
-    and a last(?) thing here
+    
+    for i, market in enumerate(data['markets']): 
+    # but i thought we shold not not use for looks for dicts
+        
+        print(market['title'], market['last_price'])
+    
 
-
-
-if __name__ = '__main__':
-    print(markets)
-    print()
-
-
-
-
+if __name__ == '__main__':
+    data = fetch_markets()
+    print_markets(data)
